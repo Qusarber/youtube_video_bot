@@ -2,7 +2,7 @@ import asyncio
 from pyrogram import Client
 
 api_id = 12345
-api_hash = "yourapphash"
+api_hash = "yourapihash"
 
 
 async def send_by_user_bot(chatid, file_name):

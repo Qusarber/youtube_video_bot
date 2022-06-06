@@ -5,7 +5,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from handlers import register_handlers_core
 
 #Enter your telegram bot token here
-TOKEN = "your_token"
+TOKEN = "yourbottoken"
 
 async def main():
     bot = Bot(token=TOKEN)
