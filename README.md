@@ -11,7 +11,7 @@ To run bot use:
 python bot.py
 ```
 
-Bot can download video under 50 mb size. If size if bigger bot can save it into your saved messages using userbot.
+Bot can download video under 50 mb size. If size is bigger, bot can save it into your saved messages using userbot.
 To use this feature you need configure your userbot with app api_id and app api_hash in userbot.py
 
 You can create your app via https://my.telegram.org/apps
