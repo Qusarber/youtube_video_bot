@@ -1,8 +1,8 @@
 # youtube_video_bot
 This Telegram bot can download video from youtube
 
-In this version bot automatically downloads videos with the highest possible resolution (including 4k)
-Next update: implement the ability to manually set resolution
+In this version, you can manually select the available video quality (720p-2160p).
+If errors occur, bot will try to download a 720p video.
 
 Don't forger to set ur bot token in bot.py file
 
