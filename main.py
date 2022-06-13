@@ -20,7 +20,7 @@ def video_downloader(videourl, videoquality):
     yt = YouTube(videourl)
     path = yt.title
     try:
-        yt = yt.streams.filter(res=f"{videoquality}", file_extension='mp4').first()
+        yt = yt.streams.filter(res=f"{videoquality}", file_extension='mp4').desc().first()
         if not os.path.exists(path):
             os.makedirs(path)
         yt.download(path)

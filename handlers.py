@@ -1,4 +1,5 @@
 import os
+import time
 
 from main import (
     video_downloader,
@@ -23,7 +24,7 @@ class DownloadVid(StatesGroup):
 
 async def process_start_command(message: types.Message):
     await DownloadVid.collect_link.set()
-    await message.answer("Enter url to download")
+    await message.answer("Hi! To use this bot you need to specify your telegram username.\nPlease, send me link for your video")
 
 
 async def process_step0(message: types.Message, state: FSMContext):
@@ -43,17 +44,19 @@ async def process_step1(message: types.Message, state: FSMContext):
         available_resolurion = video_quality(data['collect_link'])
         if message.text in available_resolurion:
             kb = ReplyKeyboardRemove()
+            await message.answer("Downloading...", reply_markup=kb)
             try:
                 file = video_downloader(data['collect_link'], message.text)
                 file_path_and_name = f'{file[0]}/{file[1]}'
                 await message.answer_document(document=open(file_path_and_name, 'rb'))
+                time.sleep(10)
                 os.remove(file_path_and_name)
                 os.rmdir(file[0])
                 data.state = None
             except:
                 try:
                     await message.answer("We need a few more time to process your request because video size is more than 50 MB. We will send you video into private chat.", reply_markup=kb)
-                    await send_by_user_bot(message.from_user.id, file_path_and_name)
+                    await send_by_user_bot(message.from_user.username, file_path_and_name)
                     await message.answer("File was sent to your private chat")
                     os.remove(file_path_and_name)
                     os.rmdir(file[0])
