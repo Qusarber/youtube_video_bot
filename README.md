@@ -1,4 +1,6 @@
 # youtube_video_bot
+Non-Commercial use only
+
 This Telegram bot can download video from youtube
 
 In this version, you can manually select the available video quality (720p-2160p).
@@ -11,7 +13,7 @@ To run bot use:
 python bot.py
 ```
 
-Bot can download video under 50 mb size. If size is bigger, bot can save it into your saved messages using userbot.
+Bot can download video under 50 mb size. If size is bigger, bot can send it to user with using userbot.
 To use this feature you need configure your userbot with app api_id and app api_hash in userbot.py
 
 You can create your app via https://my.telegram.org/apps
