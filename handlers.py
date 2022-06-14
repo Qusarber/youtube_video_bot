@@ -45,26 +45,28 @@ async def process_step1(message: types.Message, state: FSMContext):
         if message.text in available_resolurion:
             kb = ReplyKeyboardRemove()
             await message.answer("Downloading...", reply_markup=kb)
+
             try:
-                file = video_downloader(data['collect_link'], message.text)
-                file_path_and_name = f'{file[0]}/{file[1]}'
+                file_path, file_name = video_downloader(data['collect_link'], message.text)
+                file_path_and_name = f'{file_path}/{file_name}'
                 await message.answer_document(document=open(file_path_and_name, 'rb'))
                 time.sleep(10)
                 os.remove(file_path_and_name)
-                os.rmdir(file[0])
+                os.rmdir(file_path)
                 data.state = None
             except:
                 try:
                     await message.answer("We need a few more time to process your request because video size is more than 50 MB. We will send you video into private chat.", reply_markup=kb)
                     await send_by_user_bot(message.from_user.username, file_path_and_name)
                     await message.answer("File was sent to your private chat")
+                    time.sleep(10)
                     os.remove(file_path_and_name)
-                    os.rmdir(file[0])
+                    os.rmdir(file_path)
                     data.state = None
                 except:
                     await message.answer("Something went wrong. Try again via /start", reply_markup=kb)
                     os.remove(file_path_and_name)
-                    os.rmdir(file[0])
+                    os.rmdir(file_path)
                     data.state = None
         else:
             await message.answer("Please, select quality of video from keyboard")
