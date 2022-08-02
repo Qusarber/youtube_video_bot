@@ -1,5 +1,4 @@
 # youtube_video_bot
-Non-Commercial use only!
 
 This Telegram bot can download video from youtube
 
